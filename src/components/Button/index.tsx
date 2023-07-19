@@ -1,9 +1,9 @@
 import { Container} from './styles';
 
-export function Button({title}: {title: string}){
+export function Button({children}: {children: JSX.Element | JSX.Element[]}){
     return(
         <Container type='button'>
-        {title}
+            {children}
         </Container>
     )
 }

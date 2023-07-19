@@ -1,0 +1,25 @@
+import styled from 'styled-components';
+
+export const Container = styled.div`
+    width:60%;
+    height:5.6rem;
+    margin:0 6.4rem;
+    padding-left:1rem;
+
+    border-radius:1rem;
+    background-color: ${({theme}) => theme.COLORS.BACKGROUND_700};
+
+    display:flex;
+    align-items: center;
+
+    >input{
+    width:100%;
+    height:100%;
+    padding-left:1rem;
+
+    border: none;
+    background-color: transparent;
+    color: ${({theme}) => theme.COLORS.WHITE}
+
+    }
+`
