@@ -15,7 +15,8 @@ export const Container = styled.header`
 
     >h1{
         font-size:2.4rem;
-        color: ${({theme}) => theme.COLORS.PINK}
+        color: ${({theme}) => theme.COLORS.PINK};
+        margin-right:6.4rem;
     }
     
 `
@@ -23,6 +24,7 @@ export const Container = styled.header`
 export const Profile = styled.div`
     display:flex;
     align-items: center;
+    margin-left:6.4rem;
 
     >img{
         width: 5.6rem;
@@ -45,6 +47,7 @@ export const Profile = styled.div`
         }
 
         strong{
+            white-space: nowrap;
             font-size: 1.8rem;
             color: ${({theme}) => theme.COLORS.WHITE};
         }
