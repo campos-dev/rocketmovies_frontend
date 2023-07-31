@@ -33,6 +33,6 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     button:hover,a:hover{
-        filter: brightness(.9);
+        filter: brightness(.8);
     }
 `

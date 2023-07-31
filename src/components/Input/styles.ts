@@ -8,6 +8,7 @@ export const Container = styled.div`
 
     border-radius:1rem;
     background-color: ${({theme}) => theme.COLORS.BACKGROUND_700};
+    color: ${({theme}) => theme.COLORS.GRAY_100};
 
     display:flex;
     align-items: center;
@@ -19,7 +20,6 @@ export const Container = styled.div`
 
     border: none;
     background-color: transparent;
-    color: ${({theme}) => theme.COLORS.WHITE}
-
+    color: ${({theme}) => theme.COLORS.GRAY_100};
     }
 `

@@ -19,7 +19,7 @@ export function Signin(){
 
                 <Input>
                     <FiLock />
-                    <input type='text' placeholder='Password'/>
+                    <input type='password' placeholder='Password'/>
                 </Input>
 
                 <Button>
