@@ -1,9 +1,21 @@
+import {ChangeEvent, useState} from 'react';
 import {Container, Form, Background} from './styles.ts';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
 import {FiMail, FiLock} from 'react-icons/fi';
 
+
 export function Signin(){
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+
+    function handleEmailChange(event: ChangeEvent<HTMLInputElement>) {
+        setEmail(event.target.value);
+}
+
+    function handlePasswordChange(event: ChangeEvent<HTMLInputElement>) {
+        setPassword(event.target.value);
+}
     return(
         <Container>
             <Form>
@@ -14,12 +26,12 @@ export function Signin(){
 
                 <Input>
                     <FiMail />
-                    <input type='text' placeholder='E-mail'/>
+                    <input type='text' placeholder='E-mail' onChange={handleEmailChange} value={email}/>
                 </Input>
 
                 <Input>
                     <FiLock />
-                    <input type='password' placeholder='Password'/>
+                    <input type='password' placeholder='Password' onChange={handlePasswordChange} value={password}/>
                 </Input>
 
                 <Button>

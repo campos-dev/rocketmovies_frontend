@@ -11,7 +11,7 @@ export const Container = styled.header`
     display:flex;
     justify-content: space-between;
     align-items: center;
-    padding:0 80px;
+    padding:0 8rem;
 
     >h1{
         font-size:2.4rem;
