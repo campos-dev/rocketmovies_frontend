@@ -3,47 +3,45 @@ import styled from "styled-components";
 
 interface ContainerProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  isNew: boolean;
+  $isnew: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
+  align-items: center;
 
-  background-color: ${({ theme, isNew }) =>
-    isNew ? "transparent" : theme.COLORS.BACKGROUND_700};
+  background-color: ${({ theme, $isnew }) =>
+    $isnew ? "transparent" : theme.COLORS.BACKGROUND_700};
   color: ${({ theme }) => theme.COLORS.GRAY_300};
 
-  border: ${({ theme, isNew }) =>
-    isNew ? `1px dashed ${theme.COLORS.GRAY_300}` : "none"};
+  border: ${({ theme, $isnew }) =>
+    $isnew ? `1px dashed ${theme.COLORS.GRAY_300}` : "none"};
   border-radius: 1rem;
 
   margin: 0.5rem 1rem;
 
   > input {
-    display: flex;
-    align-items: center;
-    gap: 0;
+    max-width: 13rem;
 
     color: ${({ theme }) => theme.COLORS.GRAY_300};
     background-color: transparent;
     border: none;
-    margin: 0;
+
     padding: 1.2rem;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.COLORS.GRAY_300};
+    }
   }
 
   > button {
     display: flex;
     align-items: center;
-    gap: 0;
 
     background: none;
     border: none;
     color: ${({ theme }) => theme.COLORS.PINK};
 
-    padding-right: 1.6rem;
-  }
-
-  &:placeholder {
-    color: ${({ theme }) => theme.COLORS.GRAY_300};
+    padding-right: 0.8rem;
   }
 `;

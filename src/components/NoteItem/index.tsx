@@ -11,7 +11,7 @@ interface NoteItemProps {
 }
 
 export function NoteItem(props: NoteItemProps){
-    const {isNew, onClick, rest, placeholder} = props;
+    const {isNew = false, onClick, rest, placeholder} = props;
     const [text, setText] = useState('');
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>){
@@ -19,7 +19,7 @@ export function NoteItem(props: NoteItemProps){
     }
 
     return(
-        <Container isNew={isNew}>
+        <Container $isnew={isNew}>
             <input type='text' onChange={handleInputChange} value={text} readOnly={!isNew} placeholder={placeholder} {...rest}/>
             <button type='button' onClick={onClick}>
                 {isNew ? <FiPlus/> : <FiX />}

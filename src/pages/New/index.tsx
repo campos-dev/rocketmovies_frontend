@@ -3,6 +3,7 @@ import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
 import { TextArea } from '../../components/TextArea';
 import { NoteItem } from '../../components/NoteItem';
+import { Button } from '../../components/Button';
 
 export function New() {
     return (
@@ -44,6 +45,16 @@ export function New() {
                         <NoteItem value="some value" onClick={() => console.log('clicked')} rest={[]} />
                         <NoteItem isNew placeholder='New tag' value='' onClick={() => console.log('clicked')} rest={[]} />
                     </div>
+
+                    <div className="buttonsContainer">
+                        <Button>
+                            <h2>Remove movie</h2>
+                        </Button>
+                        <Button>
+                            <h2>Save changes</h2>
+                        </Button>
+                    </div>
+                    
                 </Form>
             </main>
         </Container>
