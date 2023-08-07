@@ -1,12 +1,19 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+
   height: 100vh;
   overflow: hidden;
 
+  > a {
+    margin: 4rem 8rem 2.4rem;
+    color: ${({ theme }) => theme.COLORS.PINK};
+  }
+
   > main {
     padding: 0 8rem;
-    margin: 3.8rem auto;
 
     display: grid;
     grid-template-rows: 10.5rem auto;
@@ -30,7 +37,7 @@ export const Content = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    margin-top: 11.5rem;
+    /* margin-top: 11.5rem; */
     background-color: transparent;
   }
 
@@ -43,7 +50,60 @@ export const Content = styled.div`
   scrollbar-width: thin;
   scrollbar-color: #ff859b #333;
 
-  > a {
-    color: ${({ theme }) => theme.COLORS.PINK};
+  .title_rate {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    img {
+      width: 14rem;
+    }
+  }
+
+  .user_entry {
+    margin-top: 2.4rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+
+    > img:nth-child(1) {
+      width: 1.8rem;
+      height: 1.8rem;
+
+      border-radius: 50%;
+      border: 2px solid #3e3b47;
+    }
+
+    > img:nth-child(2) {
+      width: 1.6rem;
+    }
+
+    p {
+      margin: 0;
+
+      font-weight: 400;
+      font-size: 1.6rem;
+    }
+  }
+
+  .tags {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    > span {
+      margin-bottom: 2.4rem;
+    }
+  }
+
+  p {
+    margin: 0;
+
+    text-align: justify;
+    font-weight: 400;
+    font-size: 1.6rem;
+    margin-bottom: 5rem;
   }
 `;

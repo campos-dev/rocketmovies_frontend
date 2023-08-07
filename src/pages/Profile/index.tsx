@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import {ChangeEvent, useState} from 'react';
 import {Container, Form, Avatar} from './styles';
 import {Input} from '../../components/Input';
@@ -29,7 +30,7 @@ export function Profile(){
     return(
         <Container>
             <header>
-                <a href="#">&#129120; Back</a>
+                <Link to="/">&#129120; Back</Link>
             </header>
             <Form>
                 <Avatar>

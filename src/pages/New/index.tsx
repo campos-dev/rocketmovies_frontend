@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import { Container, Form } from './styles.ts';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
@@ -12,7 +13,7 @@ export function New() {
             <main>
                 <Form>
                     <header>
-                        <a href='#'>&#129120; Back</a>
+                        <Link to='/'>&#129120; Back</Link>
                         <h1>New movie</h1>
                     </header>
 

@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import {ChangeEvent, useState} from 'react';
 import {Container, Form, Background} from './styles.ts';
 import {Input} from '../../components/Input';
@@ -38,9 +39,9 @@ const [password, setPassword] = useState('');
                     <p>Signin</p>
                 </Button>
 
-                <a href='#'>
+                <Link to='/register'>
                     Create an account
-                </a>
+                </Link>
             </Form>
             
             <Background />

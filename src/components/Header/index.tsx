@@ -12,9 +12,11 @@ export function Header() {
             <Profile>
                 <div>
                     <strong>Campos-dev</strong>
-                    <span>logoff</span>
+                    <a href='#'>logoff</a>
                 </div>
-                <img src='https://github.com/campos-dev.png' alt='Picture from the user' />
+                <a href='/profile'>
+                    <img  src='https://github.com/campos-dev.png' alt='Picture from the user' />
+                </a>
             </Profile>
         </Container>
     )

@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import {ChangeEvent, useState} from 'react';
 import {Container, Form, Background} from './styles.ts';
 import {Input} from '../../components/Input';
@@ -43,7 +44,7 @@ export function Signup(){
                     <p>Signup</p>
                 </Button>
 
-                <a href='#'>&#129120; Back</a>
+                <Link to='/'>&#129120; Back</Link>
             </Form>
             <Background />
         </Container>

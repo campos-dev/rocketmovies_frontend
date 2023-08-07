@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const AllContent = styled.body`
@@ -14,6 +15,26 @@ export const Main = styled.main`
   grid-template-areas:
     "header"
     "content";
+`;
+
+export const AddMovie = styled(Link)`
+  font-size: 1rem;
+  max-width: 16rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+
+  width: 100%;
+  background-color: ${({ theme }) => theme.COLORS.PINK};
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
+
+  height: 5.6rem;
+  border: 0;
+  padding: 0 1.6rem;
+  margin-top: 1.6rem;
+  border-radius: 1rem;
+  font-weight: 500;
 `;
 
 export const Content = styled.div`
@@ -54,18 +75,8 @@ export const Content = styled.div`
       font-size: 3.2rem;
     }
 
-    > button {
-      font-size: 1rem;
-
-      max-width: 16rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-
-      .plusIcon {
-        font-size: 2rem;
-      }
+    .plusIcon {
+      font-size: 2rem;
     }
   }
 `;
