@@ -44,4 +44,14 @@ export const Container = styled.section`
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
+
+  @media (max-width: 800px) {
+    height: 20rem;
+    h2 {
+      font-size: 1.8rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+  }
 `;

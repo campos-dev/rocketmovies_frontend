@@ -14,6 +14,14 @@ export const Container = styled.div`
   a {
     color: ${({ theme }) => theme.COLORS.PINK};
   }
+
+  @media (max-width: 800px) {
+    padding: 0 5rem;
+
+    a {
+      font-size: 1.4rem;
+    }
+  }
 `;
 
 export const Form = styled.form`
@@ -64,6 +72,21 @@ export const Avatar = styled.div`
       width: 2rem;
       height: 2rem;
       color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
+    }
+  }
+
+  @media (max-width: 800px) {
+    width: 14rem;
+    height: 14rem;
+
+    > img {
+      width: 14rem;
+      height: 14rem;
+    }
+
+    > label {
+      width: 2.8rem;
+      height: 2.8rem;
     }
   }
 `;

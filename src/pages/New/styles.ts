@@ -15,6 +15,13 @@ export const Container = styled.div`
       "header"
       "content";
   }
+
+  @media (max-width: 800px) {
+    > main {
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+  }
 `;
 
 export const Form = styled.form`
@@ -108,6 +115,7 @@ export const Form = styled.form`
 
   .buttonsContainer {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 4rem;
 
@@ -131,11 +139,59 @@ export const Form = styled.form`
       align-items: center;
       justify-content: center;
 
+      background-color: ${({ theme }) => theme.COLORS.PINK};
+
       > h2 {
         margin: 0;
 
         color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
         font-size: 1.6rem;
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    &::-webkit-scrollbar-track {
+      margin-top: 11rem;
+    }
+    a {
+      font-size: 1.4rem;
+    }
+    h1 {
+      margin-top: 2rem;
+      font-size: 2rem;
+    }
+
+    h2 {
+      margin-top: 1rem;
+      font-size: 1.6rem;
+    }
+
+    .title_rating {
+      margin: 4rem 0;
+      display: block;
+
+      > fieldset {
+        font-size: 1.2rem;
+        margin: 1rem auto 0;
+        text-align: center;
+      }
+    }
+    .tagsContainer {
+      min-height: 4rem;
+
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .buttonsContainer {
+      margin-top: 1rem;
+
+      > button:nth-child(1),
+      button:nth-child(2) {
+        > h2 {
+          font-size: 1.2rem;
+        }
       }
     }
   }

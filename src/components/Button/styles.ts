@@ -15,4 +15,10 @@ export const Container = styled.button`
   &:disabled {
     opacity: 0.5;
   }
+
+  @media (max-width: 800px) {
+    height: 3.6rem;
+
+    font-size: 1.2rem;
+  }
 `;

@@ -44,4 +44,17 @@ export const Container = styled.div<ContainerProps>`
 
     padding-right: 0.8rem;
   }
+
+  @media (max-width: 800px) {
+    > input {
+      max-width: 8rem;
+      font-size: 1.2rem;
+
+      padding: 1rem;
+
+      &::placeholder {
+        font-size: 1.2rem;
+      }
+    }
+  }
 `;

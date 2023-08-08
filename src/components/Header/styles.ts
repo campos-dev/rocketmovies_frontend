@@ -18,6 +18,14 @@ export const Container = styled.header`
     color: ${({ theme }) => theme.COLORS.PINK};
     margin-right: 6.4rem;
   }
+
+  @media (max-width: 800px) {
+    padding: 0 1rem;
+    > h1 {
+      font-size: 1.4rem;
+      margin-right: 1rem;
+    }
+  }
 `;
 
 export const Profile = styled.div`
@@ -49,6 +57,27 @@ export const Profile = styled.div`
       white-space: nowrap;
       font-size: 1.8rem;
       color: ${({ theme }) => theme.COLORS.WHITE};
+    }
+  }
+
+  @media (max-width: 800px) {
+    margin-left: 1rem;
+
+    > a > img {
+      width: 4.6rem;
+      height: 4.6rem;
+    }
+
+    > div {
+      margin-right: 1rem;
+      line-height: 1.8rem;
+      a {
+        font-size: 1.4rem;
+      }
+
+      strong {
+        font-size: 1.2rem;
+      }
     }
   }
 `;
