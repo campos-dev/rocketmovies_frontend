@@ -1,25 +1,41 @@
-import {Link} from 'react-router-dom';
-import {ChangeEvent, useState} from 'react';
-import {Container, Form, Background} from './styles.ts';
-import {Input} from '../../components/Input';
-import {Button} from '../../components/Button';
-import {FiUser, FiMail,FiLock} from 'react-icons/fi';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Container, Form, Background } from './styles.ts';
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button'; 
+import { FiUser, FiMail, FiLock } from 'react-icons/fi';
 
-export function Signup(){
-    const [user, setUser] = useState('');
+import { api } from '../../services/api.ts';
+
+
+export function Signup() {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleUserChange(event: ChangeEvent<HTMLInputElement>) {
-        setUser(event.target.value);
-}
-    function handleEmailChange(event: ChangeEvent<HTMLInputElement>) {
-        setEmail(event.target.value);
-}
+    const navigate = useNavigate();
 
-    function handlePasswordChange(event: ChangeEvent<HTMLInputElement>) {
-        setPassword(event.target.value);
-}
+    function handleSignup(event: React.MouseEvent<HTMLButtonElement>) {
+        event.preventDefault();
+        if (!name || !email || !password) {
+            return alert("All fields are mandatory");
+        }
+
+        api.post("/users", { name, email, password })
+            .then((data) => {
+                console.log(data)
+                alert("User was successfully registered!");
+                navigate("/");
+            })
+            .catch((error) => {
+                if (error.response) {
+                    alert(error.response.data.message);
+                } else {
+                    alert("It was not possible to register");
+                }
+            });
+
+    }
 
     return (
         <Container>
@@ -29,18 +45,18 @@ export function Signup(){
                 <h2>Create your account</h2>
 
                 <Input>
-                    <FiUser/>
-                    <input placeholder='name' type='text' onChange={handleUserChange} value={user}/>
+                    <FiUser />
+                    <input placeholder='name' type='text' onChange={(e) => setName(e.target.value)} value={name} />
                 </Input>
                 <Input>
-                    <FiMail/>
-                    <input placeholder='e-mail' type='text' onChange={handleEmailChange} value={email}/>
+                    <FiMail />
+                    <input placeholder='e-mail' type='text' onChange={(e) => setEmail(e.target.value)} value={email} />
                 </Input>
                 <Input>
-                    <FiLock/>
-                    <input placeholder='password' type='password' onChange={handlePasswordChange} value={password}/>
+                    <FiLock />
+                    <input placeholder='password' type='password' onChange={(e) => setPassword(e.target.value)} value={password} />
                 </Input>
-                <Button>
+                <Button onClick={handleSignup}>
                     <p>Signup</p>
                 </Button>
 

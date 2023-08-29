@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const AllContent = styled.body`
+export const AllContent = styled.div`
   height: 100vh;
   overflow: hidden;
 `;

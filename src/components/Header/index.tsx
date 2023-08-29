@@ -1,7 +1,9 @@
 import { Container, Profile } from './styles';
 import { Input } from '../Input';
+import {useAuth} from '../../hooks/auth';
 
 export function Header() {
+    const {signOut} = useAuth();
     return (
         <Container>
             <h1>Rocketmovies</h1>
@@ -12,7 +14,7 @@ export function Header() {
             <Profile>
                 <div>
                     <strong>Campos-dev</strong>
-                    <a href='#'>logoff</a>
+                    <a onClick={() => signOut()}>logoff</a>
                 </div>
                 <a href='/profile'>
                     <img  src='https://github.com/campos-dev.png' alt='Picture from the user' />

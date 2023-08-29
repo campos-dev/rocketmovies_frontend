@@ -1,8 +1,13 @@
 import { Container } from './styles';
 
-export function Button({children}: {children: JSX.Element | JSX.Element[]}) {
+interface ButtonProps {
+  children: JSX.Element | JSX.Element[];
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export function Button({children, onClick}: ButtonProps) {
     return (
-        <Container >
+        <Container onClick={onClick}>
             {children}
         </Container>
     )
