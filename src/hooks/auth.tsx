@@ -12,13 +12,12 @@ interface SignInData {
 interface AuthContextData {
     signIn: (data: SignInData, e: React.MouseEvent<HTMLButtonElement>) => void;
     signOut: () => void;
-    user: string;
+    updateProfile: (user: any, e: React.MouseEvent<HTMLButtonElement>) => void;
+    user: any;
+    token?:string
 }
 
-interface Data{
-    user:string,
-    token:string
-}
+
 
 interface AuthProviderProps {
     children: ReactNode;
@@ -26,7 +25,7 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
 
-    const [data, setData] = useState<Data>({ user: '', token: '' });
+    const [data, setData] = useState({ user: '', token: '' });
 
     async function signIn({ email, password }: SignInData, e: React.MouseEvent<HTMLButtonElement>) {
         try {
@@ -51,22 +50,37 @@ export function AuthProvider({ children }: AuthProviderProps) {
     function signOut() {
         localStorage.removeItem('@rocketmovies:token');
         localStorage.removeItem('@rocketmovies:user');
-        setData({ user: '', token: '' });
+        setData({ user:'', token: '' });
+
 }
+
+async function updateProfile({user}:any, e: React.MouseEvent<HTMLButtonElement>){
+    try{
+        e.preventDefault();
+        await api.put('/users', user);
+        localStorage.setItem('@rocketmovies:user', JSON.stringify(user));
+        setData({user, token:data.token});
+        return alert('Profile updated!');
+    }catch (error:any) {
+                if (error.response) {
+                    return alert(error.response.data.message);
+                }
+                return alert("It's not possible to update");
+            }
+    }
 
     useEffect(()=>{
         const token = localStorage.getItem('@rocketmovies:token');
         const user = localStorage.getItem('@rocketmovies:user');
 
         if(token && user){
-            console.log('rolou')
              api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
              setData({user:JSON.parse(user),token})
         }
     },[])
 
     return (
-        <AuthContext.Provider value={{ signIn, signOut, user:data.user }}>
+        <AuthContext.Provider value={{ signIn, signOut, updateProfile, user:data.user }}>
             {children}
         </AuthContext.Provider>
     );
