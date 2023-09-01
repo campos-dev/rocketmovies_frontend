@@ -54,9 +54,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
 }
 
-async function updateProfile({user}:any, e: React.MouseEvent<HTMLButtonElement>){
+async function updateProfile({user}:any, e: React.MouseEvent<HTMLButtonElement>, avatarFile?:string){
     try{
         e.preventDefault();
+
+        if(avatarFile){
+            const fileUploadForm = new FormData();
+            fileUploadForm.append('avatar',avatarFile);
+
+            const response = await api.patch('/users/avatar',fileUploadForm);
+            user.avatar = response.data.avatar;
+        }
+
         await api.put('/users', user);
         localStorage.setItem('@rocketmovies:user', JSON.stringify(user));
         setData({user, token:data.token});

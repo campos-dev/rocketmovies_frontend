@@ -5,9 +5,11 @@ import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
 import {FiUser, FiMail, FiLock, FiCamera} from 'react-icons/fi';
 
+import {api} from '../../services/api';
+
 import {useAuth} from '../../hooks/auth';
 
-
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 
 export function Profile(){
     const {user, updateProfile} = useAuth();
@@ -17,6 +19,9 @@ export function Profile(){
     const [passwordOld, setPasswordOld] = useState("");
     const [passwordNew, setPasswordNew] = useState("");
 
+    const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
+    const [avatar,setAvatar] = useState(avatarUrl);
+    const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
     async function handleUpdate(e: React.MouseEvent<HTMLButtonElement>){
         const user ={
@@ -25,8 +30,19 @@ export function Profile(){
             password:passwordNew,
             old_password:passwordOld,
         }
-        await updateProfile({user}, e)
+        await updateProfile({user, avatarFile}, e)
     }
+
+    function handleChangeAvatar(e: React.ChangeEvent<HTMLInputElement>){
+        e.preventDefault();
+       if (e.target.files) {
+        const file = e.target.files[0];
+        setAvatarFile(file);
+
+        const imagePreview = URL.createObjectURL(file);
+        setAvatar(imagePreview);
+    }
+}
 
     return(
         <Container>
@@ -35,10 +51,10 @@ export function Profile(){
             </header>
             <Form>
                 <Avatar>
-                    <img src='https://github.com/campos-dev.png' alt="User's picture" />
+                    <img src={avatar} alt="User's picture" />
                     <label htmlFor='avatar'>
                         <FiCamera />
-                        <input id='avatar' type='input'/>
+                        <input id='avatar' type='file' onChange={handleChangeAvatar}/>
                         </label>
                 </Avatar>
                 <Input>
