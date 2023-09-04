@@ -9,11 +9,11 @@ export function Rate(){
     
     return(
         <Container>
-            <img src={stars_5} alt='five stars' className='hide'/>
-            <img src={stars_4} alt='four stars' className=''/>
-            <img src={stars_3} alt='three stars' className='hide'/>
-            <img src={stars_2} alt='two stars' className='hide'/>
-            <img src={stars_1} alt='one star' className='hide'/>
+            <img src={stars_5} alt='five stars' id='stars_5' className='hide'/>
+            <img src={stars_4} alt='four stars' id='stars_4' className=''/>
+            <img src={stars_3} alt='three stars' id='stars_3' className='hide'/>
+            <img src={stars_2} alt='two stars' id='stars_2' className='hide'/>
+            <img src={stars_1} alt='one star' id='stars_1' className='hide'/>
         </Container> 
     )
 }
