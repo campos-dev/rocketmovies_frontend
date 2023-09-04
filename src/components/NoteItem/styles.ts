@@ -21,7 +21,7 @@ export const Container = styled.div<ContainerProps>`
   margin: 0.5rem 1rem;
 
   > input {
-    max-width: 13rem;
+    max-width: 14rem;
 
     color: ${({ theme }) => theme.COLORS.GRAY_300};
     background-color: transparent;

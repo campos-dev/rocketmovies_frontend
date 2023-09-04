@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import {useState} from 'react';
 import { Container, Form } from './styles.ts';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
@@ -7,6 +8,18 @@ import { NoteItem } from '../../components/NoteItem';
 import { Button } from '../../components/Button';
 
 export function New() {
+    const [tags, setTags] = useState<string[]>([]);
+    const [newTag, setNewTag] = useState('');
+
+    function handleAddTag(){
+        setTags(prevState => [...prevState, newTag]);
+        setNewTag('');
+    }
+
+    function handleRemoveTag(deleted: string){
+        setTags(prevState => prevState.filter(tag => tag !==deleted))
+    }
+
     return (
         <Container>
             <Header />
@@ -43,8 +56,19 @@ export function New() {
                     <h2>Tags</h2>  
                      
                     <div className="tagsContainer">
-                        <NoteItem value="some value" onClick={() => console.log('clicked')} rest={[]} />
-                        <NoteItem isNew placeholder='New tag' value='' onClick={() => console.log('clicked')} rest={[]} />
+                       {tags.map((tag,index) => (
+                        <NoteItem 
+                        key={String(index)}
+                        value= {tag}
+                        onClick={() => handleRemoveTag(tag)} rest={[]} />
+                       ))}
+                        
+                        <NoteItem 
+                        isNew 
+                        placeholder='New tag' 
+                        onChange={e => setNewTag(e.target.value)} 
+                        value={newTag}
+                        onClick={handleAddTag} rest={[]} />
                     </div>
 
                     <div className="buttonsContainer">
