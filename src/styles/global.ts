@@ -12,12 +12,12 @@ export const GlobalStyle = createGlobalStyle`
 }
 
     body{
-        background-color:${({theme}) => theme.COLORS.BACKGROUND_800};
-        color: ${({theme}) => theme.COLORS.WHITE};
+        background-color:${({ theme }) => theme.COLORS.BACKGROUND_800};
+        color: ${({ theme }) => theme.COLORS.WHITE};
         -webkit-font-smoothing: antialiased;
     }
 
-    body, input, button, textarea{
+    body, input, button, textarea, select{
         font-family: 'Roboto Slab', serif;
         font-size:1.6rem;
         outline: none;
@@ -35,4 +35,4 @@ export const GlobalStyle = createGlobalStyle`
     button:hover,a:hover{
         filter: brightness(.8);
     }
-`
+`;

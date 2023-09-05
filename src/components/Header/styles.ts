@@ -19,11 +19,94 @@ export const Container = styled.header`
     margin-right: 6.4rem;
   }
 
-  @media (max-width: 800px) {
+  select {
+    margin-right: 1rem;
+    border: none;
+    font-size: 1.5rem;
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    background: transparent;
+    outline: none;
+  }
+
+  select:focus option {
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
+  }
+
+  #ratingContainer {
+    border-radius: 0.5rem;
+    color: ${({ theme }) => theme.COLORS.PINK};
+
+    > input {
+      margin-left: 1.5rem;
+    }
+
+    input[type="radio"] {
+      accent-color: ${({ theme }) => theme.COLORS.PINK};
+      cursor: pointer;
+    }
+
+    > label {
+      margin-left: 0.5rem;
+      font-size: 1.4rem;
+      color: ${({ theme }) => theme.COLORS.GRAY_300};
+    }
+  }
+
+  button {
+    margin-right: 1rem;
+  }
+
+  #tagsContainer {
+    overflow: auto;
+    max-height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    /*****************    scrollbar webkit   ************/
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb:vertical {
+      background-image: url("../../../src/assets/scroll_icon.svg");
+      background-repeat: no-repeat;
+    }
+
+    /*********firefox scrollbar  *******/
+    scrollbar-width: thin;
+    scrollbar-color: #ff859b #333;
+  }
+
+  #tagsContainer > button {
+    padding: 2rem 3rem;
+  }
+
+  @media (max-width: 900px) {
     padding: 0 1rem;
     > h1 {
       font-size: 1.4rem;
       margin-right: 1rem;
+    }
+    select {
+      margin-right: 0.5rem;
+      font-size: 1rem;
+    }
+    #ratingContainer {
+      max-height: 6rem;
+      overflow: auto;
+      > label {
+        font-size: 1rem;
+      }
+    }
+    #tagsContainer > button {
+      font-size: 1.2rem;
     }
   }
 `;
