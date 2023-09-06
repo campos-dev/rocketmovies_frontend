@@ -3,6 +3,7 @@ import {Header} from '../../components/Header/index.tsx';
 import {Section} from '../../components/Section/index.tsx';
 import {FiPlus} from 'react-icons/fi'
 
+
 export function Home(){
   return(
 

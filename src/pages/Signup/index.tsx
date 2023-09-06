@@ -22,8 +22,7 @@ export function Signup() {
         }
 
         api.post("/users", { name, email, password })
-            .then((data) => {
-                console.log(data)
+            .then(() => {
                 alert("User was successfully registered!");
                 navigate("/");
             })

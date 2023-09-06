@@ -9,6 +9,7 @@ import {api} from '../../services/api';
 import { useState, useEffect } from 'react';
 
 
+
 interface Tag {
   id: string;
   name: string;
@@ -22,19 +23,36 @@ export function Header() {
     const [title, setTitle] = useState('');
     const [rating, setRating] = useState('');
     const [tags, setTags] = useState<Tag[]>([]);
+    const [tagsSelected, setTagsSelected] = useState<Tag[]>([]);
+  
 
     function onOptionChange() {
     const rateValue = (document.querySelector('input[name="rate"]:checked') as HTMLInputElement).value;
     setRating(String(rateValue));
     }
 
-    useEffect(() => {
-        async function fetchTags(){
-            const response = await api.get(`/tags`);
-            setTags(response.data)
+    function handleTagSelected(tagName: string) {
+        const alreadySelected = tagsSelected.some((tag) => tag.name === tagName);
+        if(alreadySelected){
+           const filteredTags = tagsSelected.filter(tag => tag.name !==tagName);
+           setTagsSelected(filteredTags);
+        }else{
+            setTagsSelected((prevState) => [...prevState, { id: tagName, name: tagName }]);
         }
-        fetchTags();
-    },[])
+}
+
+   useEffect(() => {
+    async function fetchNotesTags() {
+        const responseTags = await api.get(`/tags`);
+        setTags(responseTags.data);
+
+        const responseNotes = await api.get(`/notes?user_id&title&rating&tags`);
+        console.log(responseNotes.data);
+    }
+    fetchNotesTags();
+}, []);
+
+    
 
     return (
         <Container>
@@ -42,8 +60,8 @@ export function Header() {
             <Input>
                 <select onChange={(e) => setSelectedOption(e.target.value)}>
                     <option value="title">Search for a movie</option>
-                    <option value="rating">Search for rating</option>
-                    <option value="tags">Search for tags</option>
+                    <option value="rating">Search by rating</option>
+                    <option value="tags">Search by tags</option>
                 </select>
 
                 {selectedOption === 'title' ? <input type='text' 
@@ -65,7 +83,17 @@ export function Header() {
                     </div>: <></>}
                  {selectedOption === 'tags' ? 
                   <div id='tagsContainer'>
-                    {tags && tags.map(tag => <ButtonText key={tag.id} title={tag.name} />)}
+                    <ButtonText 
+                    title='all tags' 
+                    onClick ={() => handleTagSelected('all')}
+                    isActive={tagsSelected.length ===0}
+                    />
+                    {tags && tags.map(tag => <ButtonText 
+                    key={tag.id} 
+                    title={tag.name}
+                    onClick={() => handleTagSelected(tag.name)}
+                    isActive={tagsSelected.some((selectedTag) => selectedTag.name === tag.name)}
+                     />)}
                   </div>: <></>}
             </Input>
 

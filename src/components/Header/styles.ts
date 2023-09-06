@@ -67,16 +67,22 @@ export const Container = styled.header`
     /*****************    scrollbar webkit   ************/
 
     &::-webkit-scrollbar {
-      width: 0.5rem;
+      width: 0.8rem;
+    }
+
+    &::-webkit-scrollbar-button {
+      background-color: transparent;
+      height: 2rem;
     }
 
     &::-webkit-scrollbar-track {
-      background-color: transparent;
+      background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
     }
 
     &::-webkit-scrollbar-thumb:vertical {
-      background-image: url("../../../src/assets/scroll_icon.svg");
-      background-repeat: no-repeat;
+      background-color: ${({ theme }) => theme.COLORS.PINK};
+      height: 1rem;
+      cursor: pointer;
     }
 
     /*********firefox scrollbar  *******/
@@ -85,7 +91,7 @@ export const Container = styled.header`
   }
 
   #tagsContainer > button {
-    padding: 2rem 3rem;
+    padding: 2rem 1rem;
   }
 
   @media (max-width: 900px) {

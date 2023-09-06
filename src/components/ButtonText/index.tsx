@@ -1,12 +1,24 @@
-import {Container} from './styles'
+import { Container } from './styles';
+import theme from '../../styles/theme'
 
-export function ButtonText({title, ...rest}:{title:string}){
-    return(
-        <Container 
-        type='button'
-        {...rest}
-        >
-            {title}
-        </Container>
-    )
+interface ButtonTextProps {
+  title: string;
+  isActive?: boolean;
+  onClick: () => void;
+}
+
+export function ButtonText({ title, onClick, isActive =false, ...rest }: ButtonTextProps) {
+
+    const activeStyles = {
+    color: theme.COLORS.PINK,
+  };
+
+  return (
+    <Container type="button" 
+    style={isActive ? activeStyles : {}}
+    onClick={onClick}
+    {...rest}>
+      {title}
+    </Container>
+  );
 }
