@@ -59,9 +59,9 @@ export const Container = styled.header`
 
   #tagsContainer {
     overflow: auto;
-    max-height: 6rem;
+    max-height: 5.5rem;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
 
     /*****************    scrollbar webkit   ************/
@@ -72,11 +72,11 @@ export const Container = styled.header`
 
     &::-webkit-scrollbar-button {
       background-color: transparent;
-      height: 2rem;
     }
 
     &::-webkit-scrollbar-track {
       background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
+      /* height: 100%; */
     }
 
     &::-webkit-scrollbar-thumb:vertical {

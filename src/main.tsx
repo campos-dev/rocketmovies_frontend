@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {Routes} from './routes'
 import { AuthProvider } from './hooks/auth.tsx';
+import { NotesProvider } from './hooks/notes.tsx';
 
 import { GlobalStyle } from './styles/global.ts';
 import { ThemeProvider } from 'styled-components';
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ThemeProvider theme={theme}>
     <GlobalStyle />
     <AuthProvider>
-      <Routes />
+      <NotesProvider>
+        <Routes />
+      </NotesProvider>
     </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,

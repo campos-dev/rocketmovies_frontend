@@ -1,16 +1,33 @@
 import styled from "styled-components";
 
-export const Container = styled.section`
-  height: 23.5rem;
-  padding: 3.2rem;
-  margin-bottom: 2.4rem;
+export const Container = styled.div`
+  /* width: 100%; */
+`;
 
+export const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
 
+  height: 23.5rem;
+  padding: 0 3.2rem;
+  margin-bottom: 2.4rem;
+
   background-color: ${({ theme }) => theme.COLORS.PINK_BG};
   border-radius: 1.6rem;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    display: flex;
+    align-self: end;
+    margin-top: -3.5rem;
+    color: ${({ theme }) => theme.COLORS.PINK};
+    font-size: 2.5rem;
+  }
 
   h2 {
     font-size: 2.4rem;

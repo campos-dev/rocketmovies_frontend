@@ -121,20 +121,7 @@ export const Form = styled.form`
 
     margin-top: 4rem;
 
-    > button:nth-child(1) {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-
-      > h2 {
-        margin: 0;
-
-        color: ${({ theme }) => theme.COLORS.PINK};
-        font-size: 1.6rem;
-      }
-    }
-    > button:nth-child(2) {
+    > button {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -187,8 +174,7 @@ export const Form = styled.form`
     .buttonsContainer {
       margin-top: 1rem;
 
-      > button:nth-child(1),
-      button:nth-child(2) {
+      > button {
         > h2 {
           font-size: 1.2rem;
         }

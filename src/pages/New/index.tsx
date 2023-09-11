@@ -45,10 +45,7 @@ export function New() {
         navigate('/');
     }
 
-    async function handleRemoveMovie(){
-        const movie = await api.get('/notes');
-        console.log(movie);
-    }
+
 
         function onOptionChange() {
         const rateValue = (document.querySelector('input[name="rate"]:checked') as HTMLInputElement).value;
@@ -108,9 +105,7 @@ export function New() {
                     </div>
 
                     <div className="buttonsContainer">
-                        <Button onClick={handleRemoveMovie}>
-                            <h2>Remove movie</h2>
-                        </Button>
+
                         <Button onClick={handleAddNewMovie}>
                             <h2>Save changes</h2>
                         </Button>
