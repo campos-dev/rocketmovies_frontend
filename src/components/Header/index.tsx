@@ -1,11 +1,12 @@
 import { Container, Profile } from './styles';
 import { Input } from '../Input';
-import {useAuth} from '../../hooks/auth';
 import { ButtonText } from '../ButtonText';
+import {useAuth} from '../../hooks/auth';
+import {NotesContext} from '../../hooks/notes';
 
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 import {api} from '../../services/api';
-import { useState, useEffect} from 'react';
+import { useState, useEffect, useContext} from 'react';
 
 
     interface Tag {
@@ -13,19 +14,24 @@ import { useState, useEffect} from 'react';
     name: string;
     }
 
-    
 export function Header() {
-
-    // const [notes, setNotes] = useState([]);
-    
     const {signOut, user} = useAuth();
     const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
     
     const [selectedOption, setSelectedOption] = useState('title');
+    const [tags, setTags] = useState<Tag[]>([]);
+
+
     const [title, setTitle] = useState('');
     const [rating, setRating] = useState('');
-    const [tags, setTags] = useState<Tag[]>([]);
     const [tagsSelected, setTagsSelected] = useState<Tag[]>([]);
+
+
+    const { fetchNotes } = useContext(NotesContext);
+
+    useEffect(() => {
+        fetchNotes(title, rating, tagsSelected);
+    }, [title, rating, tagsSelected]);
 
 
 
@@ -35,14 +41,16 @@ export function Header() {
     }
 
     function handleTagSelected(tagName: string) {
+        let newTags = tagsSelected; 
         const alreadySelected = tagsSelected.some((tag) => tag.name === tagName);
-        if(alreadySelected){
-           const filteredTags = tagsSelected.filter(tag => tag.name !==tagName);
-           setTagsSelected(filteredTags);
-        }else{
-            setTagsSelected((prevState) => [...prevState, { id: tagName, name: tagName }]);
+            if (alreadySelected) {
+                newTags = tagsSelected.filter(tag => tag.name !== tagName);
+            } else {
+                newTags = [...tagsSelected, { id: tagName, name: tagName }];
+            }
+                setTagsSelected(newTags);
+                fetchNotes(title, rating, newTags);
         }
-}
 
 
    useEffect(() => {
@@ -53,12 +61,14 @@ export function Header() {
     fetchTags();
     }, []);
 
-
     return (
             <Container>
                 <h1>Rocketmovies</h1>
                 <Input>
-                    <select onChange={(e) => setSelectedOption(e.target.value)}>
+                    <select onChange={(e) => {
+                    setSelectedOption(e.target.value);
+                    fetchNotes();
+                    }}>
                         <option value="title">Search for a movie</option>
                         <option value="rating">Search by rating</option>
                         <option value="tags">Search by tags</option>
@@ -109,6 +119,8 @@ export function Header() {
             </Container>
     )
 }
+
+
 
 
 

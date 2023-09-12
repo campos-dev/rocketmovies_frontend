@@ -13,9 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ThemeProvider theme={theme}>
     <GlobalStyle />
     <AuthProvider>
-      <NotesProvider>
-        <Routes />
-      </NotesProvider>
+        <NotesProvider>
+          <Routes />
+        </NotesProvider>
     </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,
