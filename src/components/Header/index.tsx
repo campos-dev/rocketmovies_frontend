@@ -67,7 +67,9 @@ export function Header() {
                 <Input>
                     <select onChange={(e) => {
                     setSelectedOption(e.target.value);
-                    fetchNotes();
+                    setTitle('');
+                    setRating('');
+                    setTagsSelected([])
                     }}>
                         <option value="title">Search for a movie</option>
                         <option value="rating">Search by rating</option>
@@ -76,9 +78,13 @@ export function Header() {
 
                     {selectedOption === 'title' ? <input type='text' 
                     placeholder='Title' 
-                    onChange={e => setTitle(e.target.value)}
-                    value={title}
-                    /> : <></>}
+                    onChange={e => {
+                        setTitle(e.target.value);
+                        if (e.target.value === '') {
+                            fetchNotes();
+                        }
+                    }} 
+                    value={title} /> : <></>}
                     {selectedOption === 'rating' ? <div id='ratingContainer'>
                         <input type="radio" id="one" name="rate" value="1" onChange={onOptionChange}/>
                         <label htmlFor="one">awful</label>
