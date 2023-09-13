@@ -6,8 +6,6 @@ import {api} from '../services/api';
     name: string;
     }
     
-
-
 interface NotesContextValue {
   fetchNotes: (title?: string, rating?: string, tagsSelected?: Tag[]) => Promise<any>;
   notes: any[]; 
@@ -27,11 +25,13 @@ interface NoteProviderProps {
 
 
     function NotesProvider({ children}: NoteProviderProps){
-            const [notes, setNotes] = useState<string[]>([]);
+
+        const [notes, setNotes] = useState<string[]>([]);
 
         async function fetchNotes(title?: string, rating?: string, tagsSelected?: Tag[]): Promise<any> {
         try{
-            let endpoint = `/notes?user_id&title=${title || ''}&rating=${rating || ''}&tags=${tagsSelected || ''}`;
+            let tagsString = tagsSelected ? tagsSelected.map(tag => tag.name).join(',') : '';
+            let endpoint = `/notes?user_id&title=${title || ''}&rating=${rating || ''}&tags=${tagsString}`;
             const response = await api.get(endpoint);
             setNotes(response.data);
 

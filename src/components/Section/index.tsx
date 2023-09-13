@@ -13,7 +13,7 @@ interface Note {
   id: string;
   title: string;
   description: string;
-  [key: string]: any; 
+  [key: string]: any;
 }
 
 interface TagType {
@@ -50,8 +50,8 @@ export function Section(){
                                         {note.description ? note.description : ''}
                                 </p>
 
-                                <div className="div">
-                                        {note.tag ? note.tag.map((tag: TagType) => <Tag key={tag.id} title={tag.name}/>) : null}
+                                <div className="div">                               
+                                    {note.tag ? note.tag.map((tag: TagType) => <Tag key={tag.id} title={tag.name}/>) : null}
                                 </div>
                             </div>
                             </StyledSection>

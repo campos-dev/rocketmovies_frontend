@@ -49,7 +49,7 @@ export function Header() {
                 newTags = [...tagsSelected, { id: tagName, name: tagName }];
             }
                 setTagsSelected(newTags);
-                fetchNotes(title, rating, newTags);
+                fetchNotes(title, rating, newTags); 
         }
 
 
