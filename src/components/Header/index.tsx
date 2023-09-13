@@ -3,7 +3,7 @@ import { Input } from '../Input';
 import { ButtonText } from '../ButtonText';
 import {useAuth} from '../../hooks/auth';
 import {NotesContext} from '../../hooks/notes';
-
+import {useNavigate} from 'react-router-dom';
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 import {api} from '../../services/api';
 import { useState, useEffect, useContext} from 'react';
@@ -15,6 +15,7 @@ import { useState, useEffect, useContext} from 'react';
     }
 
 export function Header() {
+    const navigation = useNavigate();
     const {signOut, user} = useAuth();
     const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
     
@@ -29,11 +30,6 @@ export function Header() {
 
     const { fetchNotes } = useContext(NotesContext);
 
-    useEffect(() => {
-        fetchNotes(title, rating, tagsSelected);
-    }, [title, rating, tagsSelected]);
-
-
 
     function onOptionChange() {
     const rateValue = (document.querySelector('input[name="rate"]:checked') as HTMLInputElement).value;
@@ -41,6 +37,9 @@ export function Header() {
     }
 
     function handleTagSelected(tagName: string) {
+        if(tagName ==='all'){
+            return setTagsSelected([]);
+        }
         let newTags = tagsSelected; 
         const alreadySelected = tagsSelected.some((tag) => tag.name === tagName);
             if (alreadySelected) {
@@ -61,11 +60,18 @@ export function Header() {
     fetchTags();
     }, []);
 
+    useEffect(() => {
+        fetchNotes(title, rating, tagsSelected);
+    }, [title, rating, tagsSelected]);
+
+
     return (
             <Container>
                 <h1>Rocketmovies</h1>
                 <Input>
-                    <select onChange={(e) => {
+                    <select 
+                    onClick={() => navigation('/')} 
+                    onChange={(e) => {
                     setSelectedOption(e.target.value);
                     setTitle('');
                     setRating('');
@@ -76,7 +82,8 @@ export function Header() {
                         <option value="tags">Search by tags</option>
                     </select>
 
-                    {selectedOption === 'title' ? <input type='text' 
+                    {selectedOption === 'title' ? <input type='text'
+                    onClick={() => navigation('/')} 
                     placeholder='Title' 
                     onChange={e => {
                         setTitle(e.target.value);
@@ -90,7 +97,7 @@ export function Header() {
                         <label htmlFor="one">awful</label>
                         <input type="radio" id="two" name="rate" value="2" onChange={onOptionChange}/>
                         <label htmlFor="two">poor</label>
-                        <input type="radio" id="three" name="rate" value="3" onChange={onOptionChange} defaultChecked/>
+                        <input type="radio" id="three" name="rate" value="3" onChange={onOptionChange}/>
                         <label htmlFor="three">normal</label>
                         <input type="radio" id="four" name="rate" value="4"  onChange={onOptionChange}/>
                         <label htmlFor="four">good</label>

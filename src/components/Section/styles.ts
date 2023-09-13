@@ -16,17 +16,15 @@ export const StyledSection = styled.section`
   background-color: ${({ theme }) => theme.COLORS.PINK_BG};
   border-radius: 1.6rem;
 
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.COLORS.PINK_BG_HOVER};
+  }
+
   > div {
     display: flex;
     flex-direction: column;
-  }
-
-  button {
-    display: flex;
-    align-self: end;
-    margin-top: -3.5rem;
-    color: ${({ theme }) => theme.COLORS.PINK};
-    font-size: 2.5rem;
   }
 
   h2 {

@@ -7,9 +7,21 @@ export const Container = styled.div`
   height: 100vh;
   overflow: hidden;
 
-  > a {
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 4rem 8rem 2.4rem;
-    color: ${({ theme }) => theme.COLORS.PINK};
+
+    > a {
+      color: ${({ theme }) => theme.COLORS.PINK};
+    }
+
+    > button {
+      padding-right: 3rem;
+      color: ${({ theme }) => theme.COLORS.PINK};
+      font-size: 1.6rem;
+    }
   }
 
   > main {
@@ -104,6 +116,6 @@ export const Content = styled.div`
     text-align: justify;
     font-weight: 400;
     font-size: 1.6rem;
-    margin-bottom: 5rem;
+    margin-bottom: 15rem;
   }
 `;

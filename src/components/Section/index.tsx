@@ -1,13 +1,9 @@
 import {Container, StyledSection} from './styles.ts';
 import {Tag} from '../Tag';
 import {Rate} from '../Rate';
-import { ButtonText } from '../../components/ButtonText';
 import {useContext} from 'react';
 import { NotesContext } from '../../hooks/notes.tsx';
-import {api} from '../../services/api.ts';
-
-
-
+import{useNavigate} from 'react-router-dom';
 
 interface Note {
   id: string;
@@ -23,24 +19,21 @@ interface TagType {
 
 
 export function Section(){
-
+    const navigate = useNavigate();
     const { notes } = useContext(NotesContext);
   
 
-    async function handleRemoveMovie(){
-        const movie = await api.get('/notes');
-        console.log(movie + 'filme removido');
-}
+    function handleNotePreview(id:string){
+        navigate(`/preview/${id}`)
+    }
  
     return(
         <Container>
         { 
         notes &&(notes as Note[]).map(note => {
-
                     return (
-                        <StyledSection key={note.id}>
+                        <StyledSection key={note.id} onClick={() => handleNotePreview(note.id)}>
                             <div>
-                                <ButtonText onClick={handleRemoveMovie} title={'\u00D7'}/>
                                 <h2>{note.title}</h2>
                                 <div className='rate'>
                                     <Rate rating={note.rating} />

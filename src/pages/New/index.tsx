@@ -9,6 +9,14 @@ import { Button } from '../../components/Button';
 
 import {api} from '../../services/api.ts';
 
+interface AxiosError extends Error {
+  response: {
+    data: {
+      message: string;
+    };
+  };
+}
+
 export function New() {
     const [title,setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -21,9 +29,12 @@ export function New() {
 
 
     function handleAddTag(){
+        if (newTag.trim() === '') {
+        return alert('You are trying to save an empty tag')
+        }
         setTags(prevState => [...prevState, newTag]);
         setNewTag('');
-    }
+}
 
     function handleRemoveTag(deleted: string){
         setTags(prevState => prevState.filter(tag => tag !==deleted))
@@ -40,10 +51,19 @@ export function New() {
             return alert("You must click on the '+' to add the tag");
         }
 
-        await api.post('/notes', {title, description, tags, rating});
-        alert('New movie added!');
-        navigate('/');
-    }
+        try{
+            await api.post('/notes', {title, description, tags, rating});
+            alert('New movie added!');
+            navigate('/');
+        }catch(error) {
+            const err = error as AxiosError;
+            if(err.response.data.message === "A movie with this title already exists.") {
+                alert("A movie with this title already exists.")
+            } else {
+                alert('There was a problem with your request.');
+            }
+        }
+}
 
 
 
@@ -99,8 +119,8 @@ export function New() {
                         <NoteItem 
                         isNew 
                         placeholder='New tag' 
-                        onChange={e => setNewTag(e.target.value)} 
-                        value={newTag}
+                        onChange={e => setNewTag(e.target.value.toLowerCase())} 
+                        value={newTag.toLowerCase()}
                         onClick={handleAddTag} rest={[]} />
                     </div>
 
