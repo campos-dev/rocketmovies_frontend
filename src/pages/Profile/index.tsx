@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {useState} from 'react';
 import {Container, Form, Avatar} from './styles';
 import {Input} from '../../components/Input';
@@ -12,6 +12,7 @@ import {useAuth} from '../../hooks/auth';
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 
 export function Profile(){
+    const navigate = useNavigate();
     const {user, updateProfile} = useAuth();
 
     const [name, setName] = useState(user.name);
@@ -24,13 +25,16 @@ export function Profile(){
     const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
     async function handleUpdate(e: React.MouseEvent<HTMLButtonElement>){
-        const user ={
+        const update ={
             name, 
             email, 
             password:passwordNew,
             old_password:passwordOld,
         }
-        await updateProfile({user, avatarFile}, e)
+
+        const updateUser = Object.assign(user,update)
+        await updateProfile({user:updateUser, avatarFile}, e)
+        navigate('/');
     }
 
     function handleChangeAvatar(e: React.ChangeEvent<HTMLInputElement>){

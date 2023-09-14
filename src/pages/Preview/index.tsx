@@ -10,7 +10,7 @@ import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface TagType {
   title:string;
@@ -28,15 +28,19 @@ interface DataType {
 
 export function Preview(){
 
+    const navigate = useNavigate();
     const params = useParams();
     const [data, setData] = useState<DataType | null>(null);
-     const { user } = useAuth();
-     const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
+    const { user } = useAuth();
+    const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
 
 
     async function handleRemoveMovie() {
-        const movie = await api.get('/notes');
-        console.log(movie + 'filme removido');
+       const confirm = window.confirm('Do you want to remove this movie?');
+       if(confirm){
+        await api.delete(`/notes/${params.id}`);
+        navigate(-1);
+       }
     }
 
     useEffect(() =>{

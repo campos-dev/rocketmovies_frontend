@@ -12,7 +12,7 @@ interface SignInData {
 interface AuthContextData {
     signIn: (data: SignInData, e: React.MouseEvent<HTMLButtonElement>) => void;
     signOut: () => void;
-    updateProfile: (user: any, e: React.MouseEvent<HTMLButtonElement>) => void;
+    updateProfile: ({user,avataFile}: any, e: React.MouseEvent<HTMLButtonElement>) => void;
     user: any;
     token?:string
 }
@@ -54,7 +54,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
 }
 
-async function updateProfile({user}:any, e: React.MouseEvent<HTMLButtonElement>, avatarFile?:string){
+async function updateProfile({user, avatarFile}:any, e: React.MouseEvent<HTMLButtonElement>){
     try{
         e.preventDefault();
 

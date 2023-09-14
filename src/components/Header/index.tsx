@@ -51,6 +51,11 @@ export function Header() {
                 fetchNotes(title, rating, newTags); 
         }
 
+        function handleSignOut(){
+            navigation('/');
+            signOut();
+        }
+
 
    useEffect(() => {
     async function fetchTags() {
@@ -123,7 +128,7 @@ export function Header() {
                 <Profile>
                     <div>
                         <strong>{user.name}</strong>
-                        <a onClick={() => signOut()}>logoff</a>
+                        <a onClick={handleSignOut}>logoff</a>
                     </div>
                     <a href='/profile'>
                         <img  src={avatarUrl} alt={user.name} />
