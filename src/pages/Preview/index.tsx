@@ -1,3 +1,6 @@
+import timer from '../../assets/timer.svg';
+import scroll_icon from '../../assets/scroll_icon.svg';
+
 import {Container, Content} from './styles';
 import { Header } from '../../components/Header';
 import {ButtonText} from '../../components/ButtonText';
@@ -61,7 +64,7 @@ export function Preview(){
             {
                 data &&
                 <main>
-                    <Content>
+                    <Content $scrollIcon={scroll_icon}>
                         <div className="title_rate">
                             <h1>{data.title}</h1>
                             <Rate rating={data.rating}/>
@@ -70,7 +73,7 @@ export function Preview(){
                         <div className="user_entry">
                             <img src={avatarUrl} alt={`Picture from ${user.name}`} />
                             <p>By {user.name}</p>
-                            <img src='../src/assets/timer.svg' alt='timewatch'/> 
+                            <img src={timer} alt='timewatch'/> 
                             <p>{data.created_at}</p>
                         </div>
 

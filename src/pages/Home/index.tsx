@@ -3,6 +3,8 @@ import {Header} from '../../components/Header/index.tsx';
 import {Section} from '../../components/Section/index.tsx';
 import {FiPlus} from 'react-icons/fi'
 
+import scroll_icon from '../../assets/scroll_icon.svg';
+
 
 export function Home(){
   return(
@@ -11,7 +13,7 @@ export function Home(){
     <Header />
 
     <Main>
-      <Content>
+      <Content $scrollIcon={scroll_icon}>
         <div className='headerAddMovies'>
           <h2>My movies</h2>
           <AddMovie to='/new'>

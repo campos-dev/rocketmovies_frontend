@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom';
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 import {api} from '../../services/api';
 import { useState, useEffect, useContext} from 'react';
+import {Link} from 'react-router-dom';
 
 
     interface Tag {
@@ -130,9 +131,9 @@ export function Header() {
                         <strong>{user.name}</strong>
                         <a onClick={handleSignOut}>logoff</a>
                     </div>
-                    <a href='/profile'>
+                    <Link to='/profile'>
                         <img  src={avatarUrl} alt={user.name} />
-                    </a>
+                    </Link>
                 </Profile>
             </Container>
     )

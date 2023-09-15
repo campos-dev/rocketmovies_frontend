@@ -7,6 +7,8 @@ import { TextArea } from '../../components/TextArea';
 import { NoteItem } from '../../components/NoteItem';
 import { Button } from '../../components/Button';
 
+import scroll_icon from '../../assets/scroll_icon.svg';
+
 import {api} from '../../services/api.ts';
 
 interface AxiosError extends Error {
@@ -77,7 +79,7 @@ export function New() {
         <Container>
             <Header />
             <main>
-                <Form>
+                <Form $scrollIcon={scroll_icon}>
                     <header>
                         <Link to='/'>&#129120; Back</Link>
                         <h1>New movie</h1>

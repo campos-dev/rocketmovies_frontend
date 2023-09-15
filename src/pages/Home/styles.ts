@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+type ContentProps = {
+  $scrollIcon: string;
+};
+
 export const AllContent = styled.div`
   height: 100vh;
   overflow: hidden;
@@ -50,7 +54,7 @@ export const AddMovie = styled(Link)`
   }
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<ContentProps>`
   width: 100%;
   height: calc(100vh - (10.5rem + 5rem));
   margin: 5rem auto;
@@ -70,7 +74,7 @@ export const Content = styled.div`
   }
 
   &::-webkit-scrollbar-thumb:vertical {
-    background-image: url("../../../src/assets/scroll_icon.svg");
+    background-image: url(${(props) => props.$scrollIcon});
     background-repeat: no-repeat;
   }
 

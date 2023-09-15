@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type ContentProps = {
+  $scrollIcon: string;
+};
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,7 +39,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<ContentProps>`
   max-width: 122rem;
   height: calc(100vh - (10.5rem + 5rem));
   padding-right: 1rem;
@@ -54,7 +58,7 @@ export const Content = styled.div`
   }
 
   &::-webkit-scrollbar-thumb:vertical {
-    background-image: url("../../../src/assets/scroll_icon.svg");
+    background-image: url(${(props) => props.$scrollIcon});
     background-repeat: no-repeat;
   }
 
